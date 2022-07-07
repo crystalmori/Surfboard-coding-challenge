@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Card from '../shared/Card'
 import Button from '../shared/Button'
 import TimeEstimateSelect from './TimeEstimateSelect'
+import AgendaContext from '../context/AgendaContext'
 
 function AgendaForm( { handleAdd }) {
     // const [datetime, setDatetime] = useState('')
@@ -12,6 +13,16 @@ function AgendaForm( { handleAdd }) {
     const [btnDisabled, setBtnDisabled] = useState(false)
     const [message, setMessage] = useState('')
 
+    const { addAgenda, agendaEdit, updateAgenda } = useContext(AgendaContext)
+
+    useEffect(() => {
+        if (agendaEdit.edit === true) {
+            setBtnDisabled(false)
+            setTitle(agendaEdit.item.title)
+            setTimeEstimate(agendaEdit.item.timeEstimate)
+            setText(agendaEdit.item.text)
+        }
+    }, [agendaEdit])
     // const handleDatetimeChange = (e) => {
     //     setDatetime(e.target.value)
     //     if (datetime.length === '') {
@@ -56,7 +67,13 @@ function AgendaForm( { handleAdd }) {
                 timeEstimate,
                 title
             }
-            handleAdd(newAgenda);
+
+            if (agendaEdit.edit === true) {
+                updateAgenda(agendaEdit.item.id, newAgenda)
+            } else {
+                addAgenda(newAgenda)
+            }
+            
             setTitle('')
             setText('')
         }

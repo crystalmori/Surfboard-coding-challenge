@@ -1,9 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
+import AgendaContext from '../context/AgendaContext'
 
 function TimeEstimateSelect( { select }) {
 
     const [selected, setSelected] = useState('30mins')
     const radioButtons = ['15mins', '30mins', '45mins', '60mins']
+
+    const { agendaEdit } = useContext(AgendaContext)
+
+    useEffect(() => {
+        setSelected(agendaEdit.item.timeEstimate);
+    }, [agendaEdit])
 
     const handleChange = (e) => {
         setSelected(e.currentTarget.value);
