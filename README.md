@@ -4,7 +4,8 @@ Deployed on Netlify: https://dapper-puppy-071c05.netlify.app
 Check out my video demo herer: https://www.youtube.com/watch?v=Mr_paK3KVAU
 
 
-Requirements: 
+# Requirements
+
 We expect this assignment to take 1 hour to program. You may use any stack, import any third-party libraries, consult any documentation, and use any existing code that you have written or otherwise are legally allowed to be used (such as open source). However, given that our stack is written in `React` and `TypeScript`, we would prefer that you use those.
 
 # Implementation
